@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<weddingParty>
+	<groomsSide>
+		<person>
+			<position>Groom</position>
+			<name>Zach Bladow</name>
+			<city>Moorhead</city>
+			<state>MN</state>
+			<phone>
+				<home>7012355535</home>
+				<cell>2186885485</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Best man</position>
+			<name>Jordan Haugen</name>
+			<city>Grand Forks</city>
+			<state>ND</state>
+			<phone>
+				<home>7012351234</home>
+				<cell>2186881234</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Groomsman</position>
+			<name>Casey Bladow</name>
+			<city>Fargo</city>
+			<state>ND</state>
+			<phone>
+				<home>N/A</home>
+				<cell>2186887152</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Groomsman</position>
+			<name>Alan Jesme</name>
+			<city>Thief River Falls</city>
+			<state>MN</state>
+			<phone>
+				<home>2186815542</home>
+				<cell>N/A</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Groomsman</position>
+			<name>Beau Eckert</name>
+			<city>Thief River Falls</city>
+			<state>MN</state>
+			<phone>
+				<home>N/A</home>
+				<cell>2186862589</cell>
+			</phone>
+		</person>
+	</groomsSide>
+	<bridesSide>
+		<person>
+			<position>Bride</position>
+			<name>Chelsea Daley</name>
+			<city>Moorhead</city>
+			<state>MN</state>
+			<phone>
+				<home>7012355535</home>
+				<cell>2186889851</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Maid of Honor</position>
+			<name>Kate Upton</name>
+			<city>Hollywood</city>
+			<state>CA</state>
+			<phone>
+				<home>4568549658</home>
+				<cell>4569654254</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Bridesmaid</position>
+			<name>Jessica Appel</name>
+			<city>Grand Forks</city>
+			<state>ND</state>
+			<phone>
+				<home>7896541236</home>
+				<cell>2186885421</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Bridesmaid</position>
+			<name>Jenna Hoglo</name>
+			<city>Thief River Falls</city>
+			<state>MN</state>
+			<phone>
+				<home>2186815489</home>
+				<cell>2186894589</cell>
+			</phone>
+		</person>
+		<person>
+			<position>Bridesmaid</position>
+			<name>Katie Vorderbruggen</name>
+			<city>Bagley</city>
+			<state>MN</state>
+			<phone>
+				<home>N/A</home>
+				<cell>2186894562</cell>
+			</phone>
+		</person>
+	</bridesSide>
+</weddingParty>

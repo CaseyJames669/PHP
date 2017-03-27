@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CSIS 311 - Server-Side Scripting - Brekke - 688</title>
+<link rel="stylesheet" type="text/css" href="../main.css" />
+</head>
+
+<body>
+<div id="page">
+
+<div id="header">
+	<h1>CSIS 311 - Casey Bladow</h1>
+</div>
+
+<div id="menu">
+  <p>
+    <ul>
+    <li><a href="http://puff.mnstate.edu/~bladowca/private/">Home</a><br/></li>
+    <li><a href="http://puff.mnstate.edu/~bladowca/private/asmt1/index.html">Assignment 1</a><br/></li>
+    <li><a href="http://puff.mnstate.edu/~bladowca/private/asmt2/index.html">Assignment 2</a><br/></li>
+    <li><a href="http://puff.mnstate.edu/~bladowca/private/asmt3/index.html">Assignment 3</a><br/></li> 
+    <li><a href="mailto:bladowca@mnstate.edu">Email</a></li>
+    </ul>
+    <br/>
+  </p>
+</div>
+
+<div id="main">
+
+<p>Simple Pizza Order...</p>
+
+<form method="POST" action="pizza.php">
+
+	<h4>First Name: <input type="text" name="firstName" value="" /><br/></h4>
+    <h4>Last Name: <input type="text" name="lastName" value=""/><br/></h4>
+
+    <h4>Size: 
+    <select name="size">
+		<option value="1">Medium</option>
+		<option value="2">Large</option>
+	</select></h4>    
+	
+    <h4>Topping:</h4>
+    <p>
+      <input type="radio" name="topping" value="1" />Cheese<br/>
+      <input type="radio" name="topping" value="2" />Meat<br/>
+      <input type="radio" name="topping" value="3" />Chicken Alfredo<br/>
+      <input type="radio" name="topping" value="4" />Supreme<br/>
+      <input type="radio" name="topping" value="5" />Taco<br/>
+      
+    </p>
+    <h4>Additional Ingredients:</h4>
+	<input type="checkbox" name="add1" value="Bacon" />Bacon<br/>
+	<input type="checkbox" name="add2" value="Mushrooms" />Mushrooms<br/>
+    <input type="checkbox" name="add3" value="Onions" />Onions<br/>
+    <input type="checkbox" name="add4" value="Extra Cheese" />Extra Cheese<br/>
+    <input type="checkbox" name="add5" value="Green Olives" />Green Olives<br/>
+
+    <h4>Special Instructions?</h4><br/>
+    <textarea name="textarea" cols="40" rows="10"></textarea>
+	<br/>
+    
+	<input type="submit" name="submit" value="Submit" />	
+</form>
+
+<?php
+    error_reporting(0);
+	if ($_REQUEST['reset'])
+   {    
+	$firstName ="";
+	$firstName ="";
+	$size ="";
+	$topping = '';
+	$add1 = '';
+	$add2 = '';
+	$add3 = '';
+	$add4 = '';
+	$add5 = '';
+	$textarea = '';
+	}
+
+    ?>
+    
+    <form method="post" action="">
+    <input type="submit" name="clear" value="Reset" />
+    </form>
+
+
+<form action="index.html">
+<input type="submit" name="backToindex" value="Back"/>
+</form>
+</div>
+
+<div id="footer">
+	<p class="copyright">&copy; 2014 Casey Bladow</p>
+</div>
+
+</div>
+</body>
+</html>

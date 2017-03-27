@@ -1,0 +1,650 @@
+mysql -u bladowca -p //login to mysql
+
+mysql> SELECT VERSION(), CURRENT_DATE;
++-----------+--------------+
+| VERSION() | CURRENT_DATE |
++-----------+--------------+
+| 5.0.95    | 2014-04-22   |
++-----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SIN(PI()/4), (4+1)*5; //simple calculator
++-------------------+---------+ 
+| SIN(PI()/4)       | (4+1)*5 |
++-------------------+---------+
+| 0.707106781186547 |      25 |
++-------------------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT VERSION(); SELECT NOW(); //multiple statements on 1 line.
++-----------+
+| VERSION() |
++-----------+
+| 5.0.95    |
++-----------+
+1 row in set (0.00 sec)
+
++---------------------+
+| NOW()               |
++---------------------+
+| 2014-04-22 23:27:17 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    -> USER()
+    -> ,
+    -> CURRENT_DATE(); //simple multiple-line statement
++--------------------+----------------+
+| USER()             | CURRENT_DATE() |
++--------------------+----------------+
+| bladowca@localhost | 2014-04-22     |
++--------------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> show databases; //show databases currently on server
++---------------------------+
+| Database                  |
++---------------------------+
+| information_schema        |
+| bladowca_Asmt5            |
+| bladowca_BooksModel       |
+| bladowca_ch10_ABC_Markets |
+| bladowca_ch10_SaleCo      |
+| bladowca_ch7_ConstructCo  |
+| bladowca_ch7_SaleCo       |
+| bladowca_ch8_SaleCo       |
+| bladowca_ch8_SimpleCo     |
++---------------------------+
+9 rows in set (0.02 sec)
+
+mysql> create database bladowca_asmt13; //create database
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases; //show databases
++---------------------------+
+| Database                  |
++---------------------------+
+| information_schema        |
+| bladowca_Asmt5            |
+| bladowca_BooksModel       |
+| bladowca_asmt13           |
+| bladowca_ch10_ABC_Markets |
+| bladowca_ch10_SaleCo      |
+| bladowca_ch7_ConstructCo  |
+| bladowca_ch7_SaleCo       |
+| bladowca_ch8_SaleCo       |
+| bladowca_ch8_SimpleCo     |
+| bladowca_menageie         |
++---------------------------+
+11 rows in set (0.01 sec)
+
+mysql> drop database bladowca_menageie; //delete database
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show databases;
++---------------------------+
+| Database                  |
++---------------------------+
+| information_schema        |
+| bladowca_Asmt5            |
+| bladowca_BooksModel       |
+| bladowca_asmt13           |
+| bladowca_ch10_ABC_Markets |
+| bladowca_ch10_SaleCo      |
+| bladowca_ch7_ConstructCo  |
+| bladowca_ch7_SaleCo       |
+| bladowca_ch8_SaleCo       |
+| bladowca_ch8_SimpleCo     |
++---------------------------+
+10 rows in set (0.02 sec)
+
+mysql> use bladowca_asmt13; //use created database
+Database changed
+
+mysql> show tables; //show tables in database
+Empty set (0.00 sec) //currently empty
+
+mysql> create table pet (name VARCHAR(20), owner VARCHAR(20),
+    -> species VARCHAR(20), sex CHAR(1), birth DATE, death DATE); //create table 'pet'
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables; //displays tables
++---------------------------+
+| Tables_in_bladowca_asmt13 |
++---------------------------+
+| pet                       |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe pet; //detailed view of created table
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(20) | YES  |     | NULL    |       |
+| owner   | varchar(20) | YES  |     | NULL    |       |
+| species | varchar(20) | YES  |     | NULL    |       |
+| sex     | char(1)     | YES  |     | NULL    |       |
+| birth   | date        | YES  |     | NULL    |       |
+| death   | date        | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+mysql> load data local infile 'pet.txt' into table pet; //loaded pet.txt into table pet
+Query OK, 8 rows affected (0.00 sec)
+Records: 8  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> insert into pet
+    -> values ('Puffball','Diane','hamster','f','1999-03-30',null); //inserted another put into table
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from pet; //show the contents of table 'pet'
++----------+--------+---------+------+------------+------------+
+| name     | owner  | species | sex  | birth      | death      |
++----------+--------+---------+------+------------+------------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
+| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
+| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |
+| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
+| Puffball | Diane  | hamster | f    | 1999-03-30 | NULL       |
++----------+--------+---------+------+------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> update pet set birth = '1989-08-31' where name = 'Bowser'; //update Bowser birthdate
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from pet;
++----------+--------+---------+------+------------+------------+
+| name     | owner  | species | sex  | birth      | death      |
++----------+--------+---------+------+------------+------------+
+| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |
+| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |
+| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |
+| Bowser   | Diane  | dog     | m    | 1989-08-31 | 1995-07-29 |
+| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |
+| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |
+| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |
+| Puffball | Diane  | hamster | f    | 1999-03-30 | NULL       |
++----------+--------+---------+------+------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from pet where name = 'Bowser'; //view ONLY Bowser
++--------+-------+---------+------+------------+------------+
+| name   | owner | species | sex  | birth      | death      |
++--------+-------+---------+------+------------+------------+
+| Bowser | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
++--------+-------+---------+------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from pet where birth >= '1998-1-1'; //display births after 1/1/88
++----------+-------+---------+------+------------+-------+
+| name     | owner | species | sex  | birth      | death |
++----------+-------+---------+------+------------+-------+
+| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |
+| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |
++----------+-------+---------+------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from pet where species = 'dog' and sex = 'f'; //display female dogs
++-------+--------+---------+------+------------+-------+
+| name  | owner  | species | sex  | birth      | death |
++-------+--------+---------+------+------------+-------+
+| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
++-------+--------+---------+------+------------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from pet where species = 'snake' or species = 'bird'; //display snakes OR birds
++----------+-------+---------+------+------------+-------+
+| name     | owner | species | sex  | birth      | death |
++----------+-------+---------+------+------------+-------+
+| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |
+| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL  |
+| Slim     | Benny | snake   | m    | 1996-04-29 | NULL  |
++----------+-------+---------+------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from pet where (species = 'cat' and sex = 'm')
+    -> or (species = 'dog' and sex = 'f'); //display male cats or female dogs
++-------+--------+---------+------+------------+-------+
+| name  | owner  | species | sex  | birth      | death |
++-------+--------+---------+------+------------+-------+
+| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |
+| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
++-------+--------+---------+------+------------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select name, birth from pet; //display pets name and birthdate
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Fluffy   | 1993-02-04 |
+| Claws    | 1994-03-17 |
+| Buffy    | 1989-05-13 |
+| Fang     | 1990-08-27 |
+| Bowser   | 1989-08-31 |
+| Chirpy   | 1998-09-11 |
+| Whistler | 1997-12-09 |
+| Slim     | 1996-04-29 |
+| Puffball | 1999-03-30 |
++----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select owner from pet; //show all the pets owners
++--------+
+| owner  |
++--------+
+| Harold |
+| Gwen   |
+| Harold |
+| Benny  |
+| Diane  |
+| Gwen   |
+| Gwen   |
+| Benny  |
+| Diane  |
++--------+
+9 rows in set (0.00 sec)
+
+mysql> select distinct owner from pet; //show owners with no repeats
++--------+
+| owner  |
++--------+
+| Harold |
+| Gwen   |
+| Benny  |
+| Diane  |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> select name, species, birth from pet
+    -> where species = 'dog' or species = 'cat'; //display owners of dogs or cats
++--------+---------+------------+
+| name   | species | birth      |
++--------+---------+------------+
+| Fluffy | cat     | 1993-02-04 |
+| Claws  | cat     | 1994-03-17 |
+| Buffy  | dog     | 1989-05-13 |
+| Fang   | dog     | 1990-08-27 |
+| Bowser | dog     | 1989-08-31 |
++--------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select name, birth from pet order by birth;//animals bdays sorted
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Buffy    | 1989-05-13 |
+| Bowser   | 1989-08-31 |
+| Fang     | 1990-08-27 |
+| Fluffy   | 1993-02-04 |
+| Claws    | 1994-03-17 |
+| Slim     | 1996-04-29 |
+| Whistler | 1997-12-09 |
+| Chirpy   | 1998-09-11 |
+| Puffball | 1999-03-30 |
++----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select name, birth from pet order by birth desc;//sorted descending. ascending is default
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Puffball | 1999-03-30 |
+| Chirpy   | 1998-09-11 |
+| Whistler | 1997-12-09 |
+| Slim     | 1996-04-29 |
+| Claws    | 1994-03-17 |
+| Fluffy   | 1993-02-04 |
+| Fang     | 1990-08-27 |
+| Bowser   | 1989-08-31 |
+| Buffy    | 1989-05-13 |
++----------+------------+
+9 rows in set (0.04 sec)
+
+mysql> select name, species, birth from pet
+    -> order by species, birth desc; //added species
++----------+---------+------------+
+| name     | species | birth      |
++----------+---------+------------+
+| Chirpy   | bird    | 1998-09-11 |
+| Whistler | bird    | 1997-12-09 |
+| Claws    | cat     | 1994-03-17 |
+| Fluffy   | cat     | 1993-02-04 |
+| Fang     | dog     | 1990-08-27 |
+| Bowser   | dog     | 1989-08-31 |
+| Buffy    | dog     | 1989-05-13 |
+| Puffball | hamster | 1999-03-30 |
+| Slim     | snake   | 1996-04-29 |
++----------+---------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select name, birth, curdate(),
+    -> timestampdiff(year,birth,curdate()) as age
+    -> from pet;//show age
++----------+------------+------------+------+
+| name     | birth      | curdate()  | age  |
++----------+------------+------------+------+
+| Fluffy   | 1993-02-04 | 2014-04-23 |   21 |
+| Claws    | 1994-03-17 | 2014-04-23 |   20 |
+| Buffy    | 1989-05-13 | 2014-04-23 |   24 |
+| Fang     | 1990-08-27 | 2014-04-23 |   23 |
+| Bowser   | 1989-08-31 | 2014-04-23 |   24 |
+| Chirpy   | 1998-09-11 | 2014-04-23 |   15 |
+| Whistler | 1997-12-09 | 2014-04-23 |   16 |
+| Slim     | 1996-04-29 | 2014-04-23 |   17 |
+| Puffball | 1999-03-30 | 2014-04-23 |   15 |
++----------+------------+------------+------+
+9 rows in set (0.00 sec)
+
+mysql> select name, birth, curdate(), timestampdiff(year,birth,curdate()) as age from pet order by name;
+//sorted by name
++----------+------------+------------+------+
+| name     | birth      | curdate()  | age  |
++----------+------------+------------+------+
+| Bowser   | 1989-08-31 | 2014-04-23 |   24 |
+| Buffy    | 1989-05-13 | 2014-04-23 |   24 |
+| Chirpy   | 1998-09-11 | 2014-04-23 |   15 |
+| Claws    | 1994-03-17 | 2014-04-23 |   20 |
+| Fang     | 1990-08-27 | 2014-04-23 |   23 |
+| Fluffy   | 1993-02-04 | 2014-04-23 |   21 |
+| Puffball | 1999-03-30 | 2014-04-23 |   15 |
+| Slim     | 1996-04-29 | 2014-04-23 |   17 |
+| Whistler | 1997-12-09 | 2014-04-23 |   16 |
++----------+------------+------------+------+
+9 rows in set (0.00 sec)
+
+mysql> select name, birth, curdate(), timestampdiff(year,birth,curdate()) as age from pet order by age;
+//sorted by age
++----------+------------+------------+------+
+| name     | birth      | curdate()  | age  |
++----------+------------+------------+------+
+| Chirpy   | 1998-09-11 | 2014-04-23 |   15 |
+| Puffball | 1999-03-30 | 2014-04-23 |   15 |
+| Whistler | 1997-12-09 | 2014-04-23 |   16 |
+| Slim     | 1996-04-29 | 2014-04-23 |   17 |
+| Claws    | 1994-03-17 | 2014-04-23 |   20 |
+| Fluffy   | 1993-02-04 | 2014-04-23 |   21 |
+| Fang     | 1990-08-27 | 2014-04-23 |   23 |
+| Buffy    | 1989-05-13 | 2014-04-23 |   24 |
+| Bowser   | 1989-08-31 | 2014-04-23 |   24 |
++----------+------------+------------+------+
+9 rows in set (0.00 sec)
+
+mysql> select name, birth, death, timestampdiff(year,birth,death) as age from pet where death is not null order by age;
+//show dead pets
++--------+------------+------------+------+
+| name   | birth      | death      | age  |
++--------+------------+------------+------+
+| Bowser | 1989-08-31 | 1995-07-29 |    5 |
++--------+------------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> select name, birth, month(birth) from pet;//display the month of the birth
++----------+------------+--------------+
+| name     | birth      | month(birth) |
++----------+------------+--------------+
+| Fluffy   | 1993-02-04 |            2 |
+| Claws    | 1994-03-17 |            3 |
+| Buffy    | 1989-05-13 |            5 |
+| Fang     | 1990-08-27 |            8 |
+| Bowser   | 1989-08-31 |            8 |
+| Chirpy   | 1998-09-11 |            9 |
+| Whistler | 1997-12-09 |           12 |
+| Slim     | 1996-04-29 |            4 |
+| Puffball | 1999-03-30 |            3 |
++----------+------------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select name, birth from pet where month(birth) = 5;//show only births in may
++-------+------------+
+| name  | birth      |
++-------+------------+
+| Buffy | 1989-05-13 |
++-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select 1 is null, 1 is not null;
++-----------+---------------+
+| 1 is null | 1 is not null |
++-----------+---------------+
+|         0 |             1 |
++-----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select 1 = null, 1 <> null, 1 < null, 1 > null; //arithmatic doesnt work
++----------+-----------+----------+----------+
+| 1 = null | 1 <> null | 1 < null | 1 > null |
++----------+-----------+----------+----------+
+|     NULL |      NULL |     NULL |     NULL |
++----------+-----------+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> select 0 is null, 0 is not null, '' is null, '' is not null;
++-----------+---------------+------------+----------------+
+| 0 is null | 0 is not null | '' is null | '' is not null |
++-----------+---------------+------------+----------------+
+|         0 |             1 |          0 |              1 |
++-----------+---------------+------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from pet where name like 'b%';//names beginning with b
++--------+--------+---------+------+------------+------------+
+| name   | owner  | species | sex  | birth      | death      |
++--------+--------+---------+------+------------+------------+
+| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Bowser | Diane  | dog     | m    | 1989-08-31 | 1995-07-29 |
++--------+--------+---------+------+------------+------------+
+2 rows in set (0.04 sec)
+
+mysql> select * from pet where name like '%fy';//names ending in fy
++--------+--------+---------+------+------------+-------+
+| name   | owner  | species | sex  | birth      | death |
++--------+--------+---------+------+------------+-------+
+| Fluffy | Harold | cat     | f    | 1993-02-04 | NULL  |
+| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |
++--------+--------+---------+------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from pet where name like '%w%';//names containing a w
++----------+-------+---------+------+------------+------------+
+| name     | owner | species | sex  | birth      | death      |
++----------+-------+---------+------+------------+------------+
+| Claws    | Gwen  | cat     | m    | 1994-03-17 | NULL       |
+| Bowser   | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
+| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL       |
++----------+-------+---------+------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from pet where name like '_____';//names w/exactly 5 characteristics
++-------+--------+---------+------+------------+-------+
+| name  | owner  | species | sex  | birth      | death |
++-------+--------+---------+------+------------+-------+
+| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |
+| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
++-------+--------+---------+------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from pet where name regexp '^b';//name starts with b
++--------+--------+---------+------+------------+------------+
+| name   | owner  | species | sex  | birth      | death      |
++--------+--------+---------+------+------------+------------+
+| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Bowser | Diane  | dog     | m    | 1989-08-31 | 1995-07-29 |
++--------+--------+---------+------+------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from pet where name regexp binary '^b';
+Empty set (0.00 sec)
+
+mysql> select * from pet where name regexp 'fy$';//name ends in fy
++--------+--------+---------+------+------------+-------+
+| name   | owner  | species | sex  | birth      | death |
++--------+--------+---------+------+------------+-------+
+| Fluffy | Harold | cat     | f    | 1993-02-04 | NULL  |
+| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |
++--------+--------+---------+------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from pet where name regexp 'w';//name contains a w
++----------+-------+---------+------+------------+------------+
+| name     | owner | species | sex  | birth      | death      |
++----------+-------+---------+------+------------+------------+
+| Claws    | Gwen  | cat     | m    | 1994-03-17 | NULL       |
+| Bowser   | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
+| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL       |
++----------+-------+---------+------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(*) from pet;//the number of rows in pet
++----------+
+| count(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select owner, count(*) from pet group by owner;//number of rows per owners
++--------+----------+
+| owner  | count(*) |
++--------+----------+
+| Benny  |        2 |
+| Diane  |        2 |
+| Gwen   |        3 |
+| Harold |        2 |
++--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select species, count(*) from pet group by species;//count species
++---------+----------+
+| species | count(*) |
++---------+----------+
+| bird    |        2 |
+| cat     |        2 |
+| dog     |        3 |
+| hamster |        1 |
+| snake   |        1 |
++---------+----------+
+5 rows in set (0.01 sec)
+
+mysql> select sex, count(*) from pet group by sex;//count of sex
++------+----------+
+| sex  | count(*) |
++------+----------+
+| NULL |        1 |
+| f    |        4 |
+| m    |        4 |
++------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select species, sex, count(*) from pet group by species, sex;
++---------+------+----------+
+| species | sex  | count(*) |
++---------+------+----------+
+| bird    | NULL |        1 |
+| bird    | f    |        1 |
+| cat     | f    |        1 |
+| cat     | m    |        1 |
+| dog     | f    |        1 |
+| dog     | m    |        2 |
+| hamster | f    |        1 |
+| snake   | m    |        1 |
++---------+------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select species, sex, count(*) from pet
+    -> where species = 'dog' or species = 'cat'
+    -> group by species, sex;
+//number of male/female cats and dogs
++---------+------+----------+
+| species | sex  | count(*) |
++---------+------+----------+
+| cat     | f    |        1 |
+| cat     | m    |        1 |
+| dog     | f    |        1 |
+| dog     | m    |        2 |
++---------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> create table event (name VARCHAR(20), date DATE,
+    -> type VARCHAR(15), remark VARCHAR(255));
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> load data local infile 'event.txt' into table event;
+Query OK, 10 rows affected (0.87 sec)
+Records: 10  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> select pet.name,
+    -> (year(date)-year(birth)) - (right(date,5)<right(birth,5)) as age,
+    -> remark
+    -> from pet inner join event
+    -> on pet.name = event.name
+    -> where event.type = 'litter';
++--------+------+-----------------------------+
+| name   | age  | remark                      |
++--------+------+-----------------------------+
+| Fluffy |    2 | 4 kittens, 3 female, 1 male |
+| Buffy  |    4 | 5 puppies, 2 female, 3 male |
+| Buffy  |    5 | 3 puppies, 3 female         |
++--------+------+-----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select p1.name, p1.sex, p2.name, p2.sex, p1.species
+    -> from pet as p1 inner join pet as p2
+    -> on p1.species = p2.species and p1.sex = 'f' and p2.sex = 'm';
++--------+------+--------+------+---------+
+| name   | sex  | name   | sex  | species |
++--------+------+--------+------+---------+
+| Fluffy | f    | Claws  | m    | cat     |
+| Buffy  | f    | Fang   | m    | dog     |
+| Buffy  | f    | Bowser | m    | dog     |
++--------+------+--------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select database();//show presently selected database
++-----------------+
+| database()      |
++-----------------+
+| bladowca_asmt13 |
++-----------------+
+1 row in set (0.00 sec)
+
+[bladowca@puff asmt13]$ mysql -u bladowca -p < batch.txt
+Enter password:
+Tables_in_bladowca_asmt13
+event
+pet
+name    owner   species sex     birth   death
+Fluffy  Harold  cat     f       1993-02-04      NULL
+Claws   Gwen    cat     m       1994-03-17      NULL
+Buffy   Harold  dog     f       1989-05-13      NULL
+Fang    Benny   dog     m       1990-08-27      NULL
+Bowser  Diane   dog     m       1989-08-31      1995-07-29
+Chirpy  Gwen    bird    f       1998-09-11      NULL
+Whistler        Gwen    bird    NULL    1997-12-09      NULL
+Slim    Benny   snake   m       1996-04-29      NULL
+Puffball        Diane   hamster f       1999-03-30      NULL
+name    date    type    remark
+Fluffy  1995-05-15      litter  4 kittens, 3 female, 1 male
+Buffy   1993-06-23      litter  5 puppies, 2 female, 3 male
+Buffy   1994-06-19      litter  3 puppies, 3 female
+Chirpy  1999-03-21      vet     needed beak straightened
+Slim    1997-08-03      vet     broken rib
+Bowser  1991-10-12      kennel  NULL
+Fang    1991-10-12      kennel  NULL
+Fang    1998-08-28      birthday        Gave him a new chew toy
+Claws   1998-03-17      birthday        Gave him a new flea collar
+Whistler        1998-12-09      birthday        First birthday
+species
+cat
+dog
+bird
+snake
+hamster
+

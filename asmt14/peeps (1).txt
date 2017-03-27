@@ -1,0 +1,21 @@
+James	Casey	Bartender	3	Hooligans	\N
+Mau	Jake	Bartender	10	Hooligan	\N
+Sorenson	Abby	Manager	7	Hooligans	\N
+Kieffer	Bill	GM	12	BigDs	\N
+Nelson	Wade	Bartender	6	Bar9	\N
+Tweeter	Patrick	Manager	12	Bar9	\N
+Nord	Chris	Manager	4	BigDs	\N
+Kolle	Nicole	Cocktail	5	Hooligans	\N
+Knudson	Dustin	Bartender	8	Hooligans	\N
+Smith	Darren	Bartender	5	Bar9	\N
+Klinkhammer	Tony	Cocktail	6	Bar9	\N
+Bella	Justine	Bartender	5	Empire	\N
+Saga	Jesse	Bartender	7	OB	\N
+Nord	Nicole	GM	8	ShotgunSallys	\N
+Eckstrom	Abby	4	Cocktail	WB	\N
+John	Big	5	Bouncer	BigDs	\N
+Benson	Richard	20	Owner	Hooligans	\N
+Smith	Mike	20	Owner	WB	\N
+Smith	John	20	Owner	Bar9	\N
+Swanson	Lee	30	Owner	Hub	\N
+

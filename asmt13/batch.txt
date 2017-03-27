@@ -1,0 +1,5 @@
+use bladowca_asmt13;
+show tables;
+select * from pet;
+select * from event;
+select distinct species from pet;
